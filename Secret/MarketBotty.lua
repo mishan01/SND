@@ -2,10 +2,11 @@
 [[SND Metadata]]
 author:  'Lis'
 version: 0.0.1
-description: MarketBotty v2
-DO NOT USE YET, INCOMPLETE
-DO NOT ask for help with this script in Discord or any chats
-Use at your own risk
+description: |
+  MarketBotty v2
+  DO NOT USE YET, INCOMPLETE
+  DO NOT ask for help with this script in Discord or any chats
+  Use at your own risk
 plugin_dependencies:
 - vnavmesh
 configs:
@@ -358,6 +359,32 @@ function SearchPrices()
     end
 end
 
+function SearchRetainers()
+    search_retainers = {}
+    market_search_retainers = Addons.GetAddon("ItemSearchResult"):GetNode(1, 26, 4, 10).Text
+    if market_search_retainers ~= "" then
+        search_retainers[1] = market_search_retainers
+    end
+
+    for i = 41001, 41009 do
+        market_search_retainers = Addons.GetAddon("ItemSearchResult"):GetNode(1, 26, i, 10).Text
+        if market_search_retainers ~= "" then
+            pos = (i - 41000) + 1
+            search_retainers[pos] = market_search_retainers
+        end
+    end
+
+    for i = 1, 10 do
+        if search_retainers[1] then
+            Dalamud.Log("Search Retainers: " .. search_retainers[i])
+        end
+    end
+end
+
+function HistoryAverage()
+    first_history = string.gsub(Addons.GetAddon("ItemHistory"):GetNode(1, 10, 4, 4).Text, "%D", "")
+end
+
 function Clear()
     next_retainer = 0
     prices_list = {}
@@ -376,3 +403,4 @@ ClickItem(1)
 ReadOpenItem()
 SearchResults()
 SearchPrices()
+SearchRetainers()
