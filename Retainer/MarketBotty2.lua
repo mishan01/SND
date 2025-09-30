@@ -705,10 +705,10 @@ if next_retainer < total_retainers then
     next_retainer = next_retainer + 1
 else
     if is_looping then
+        IPC.AutoRetainer.SetSuppressed(false)
         yield("/wait " .. loop_time)
         goto Startup
     else
-        IPC.AutoRetainer.SetSuppressed(false)
         goto EndOfScript
     end
 end
