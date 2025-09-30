@@ -404,7 +404,7 @@ function SearchResults()
     old_first_price = first_price
     search_results = string.gsub(Addons.GetAddon("ItemSearchResult"):GetNode(1, 29).Text, "%D", "")
 
-    yield("/echo Search results: " .. search_results)
+    echo("Search results: " .. search_results)
 
     return search_results
 end
