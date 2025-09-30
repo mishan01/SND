@@ -1,7 +1,7 @@
 --[=====[
 [[SND Metadata]]
 author:  'Lis'
-version: 1.0.0
+version: 1.0.3
 description: >-
   MarketBotty v2
   Do not ask about this script in Discord servers or support chats. Use at your own risk.
@@ -507,7 +507,7 @@ function HistoryAverage()
         end
     end
 
-    for history_tm_count, history_tm_price in pairs(history_list) do
+    for _, history_tm_price in pairs(history_list) do
         history_tm_running = history_tm_running + history_tm_price
     end
 
