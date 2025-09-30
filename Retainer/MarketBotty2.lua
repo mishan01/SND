@@ -668,6 +668,10 @@ end
 
 ::Startup::
 Clear()
+while IPC.AutoRetainer.IsBusy() do
+    yield("/wait 1.0")
+end
+IPC.AutoRetainer.SetSuppressed(true)
 if Svc.Condition[50] == false then
     echo("Not at a summoning bell.")
     OpenBell()
@@ -704,6 +708,7 @@ else
         yield("/wait " .. loop_time)
         goto Startup
     else
+        IPC.AutoRetainer.SetSuppressed(false)
         goto EndOfScript
     end
 end
